@@ -1,0 +1,24 @@
+OUTPUT		EQU	$FB
+		
+
+		ORG	$00
+
+State_1		FCB	$05
+State_2		FCB	$06
+State_3		FCB	$0A	
+State_4		FCB	$09
+		
+		ORG	$20
+
+start:		LDA	State_1
+		STA	OUTPUT
+		LDA	State_2
+		STA	OUTPUT
+		LDA	State_3
+		STA	OUTPUT
+		LDA	State_4
+		STA 	OUTPUT
+		JMP	start
+
+		ORG	$FF
+		FCB	$20
