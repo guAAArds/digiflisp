@@ -1,0 +1,36 @@
+Output	EQU	$FB
+Input	EQU	$FC
+index	EQU	$05
+vector	EQU	$00
+delay	EQU	$01
+
+	ORG	$FF
+	FCB	$20
+
+	ORG	$00
+	FCB	$05
+	FCB	$06
+	FCB	$0A
+	FCB	$09
+
+	ORG	$20
+Main	LDA	#$00
+	STA	index
+	LDX	#vector
+Main1	JSR	Delay
+	LDA	index
+	LDA	A,X
+	STA	Output
+	JSR	Nextsta
+	STA	index
+	JMP	Main1 
+
+Delay	LDA	#delay
+	DECA
+	BNE	Delay
+	RTS
+
+Nextsta LDA	index
+	INCA
+	ANDA	#$03
+	RTS
